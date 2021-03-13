@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}"
+      xmlns:th="https://www.thymeleaf.org">
+
+<div class="container" layout:fragment="content">
+
+    <h1>Create New Car</h1>
+    <form th:action="@{/newcar}" method="POST">
+
+        <div class="form-group">
+            <label for="inputCar">Car Id</label>
+            <input type="text" class="form-control" name="carId" id="inputCar">
+        </div>
+
+        <div class="form-group">
+            <label for="inputNewCar">New Car</label>
+            <input type="text" class="form-control" name="name" id="inputNewCar">
+        </div>
+
+        <div class="form-group">
+            <label for="inputPrice">Price (฿)</label>
+            <input type="text" class="form-control" name="price" id="inputPrice">
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary">
+        </div>
+
+    </form>
+    <hr>
+
+    <h1>All Cars on Shop</h1>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th>Id</th>
+            <th>CarId</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="newcar : ${newcar}">
+            <td th:text="${newcar.id}"></td>
+            <td th:text="${newcar.carId}"></td>
+            <td th:text="${newcar.name}"></td>
+            <td th:text="${newcar.price}"></td>
+            <td>
+                <a class="btn btn-primary"
+                   th:href="@{/newcar/edit/{id}(id=${newcar.id})}">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
